@@ -6,6 +6,8 @@ test: prime
 	@./prime.c.exe
 	@echo -n "  go: "
 	@./prime.go.exe
+	@echo -n "  js: "
+	@node prime.js
 	@echo -n "  rs: "
 	@./prime.rs.exe
 	@echo -n "  sh: "
