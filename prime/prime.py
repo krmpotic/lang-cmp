@@ -2,7 +2,7 @@
 
 import math
 
-N = 100
+N = 101
 
 def isprime(n):
     r = math.sqrt(n)

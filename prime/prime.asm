@@ -1,5 +1,5 @@
 section .data
-	LIMIT     equ 100
+	LIMIT     equ 101
 	STDOUT    equ 1
 	SYS_WRITE equ 1
 	SYS_EXIT  equ 60

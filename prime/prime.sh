@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-N=${1:-100}
+N=${1:-101}
 
 isprime() {
 	# seq includes last argument in list!

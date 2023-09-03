@@ -1,4 +1,4 @@
-const N: i32 = 100;
+const N: i32 = 101;
 
 fn is_prime(n: i32) -> bool {
     let r = (n as f64).sqrt() as i32;

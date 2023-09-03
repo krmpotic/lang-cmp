@@ -5,7 +5,7 @@ import (
 	"math"
 )
 
-const N = 100
+const N = 101
 
 func isPrime(n int) bool {
 	r := math.Sqrt(float64(n))
