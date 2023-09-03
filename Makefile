@@ -1,8 +1,11 @@
 test: prime-test
 
-prime: prime.c.exe prime.go.exe prime.rs.exe
+prime: prime.asm.exe prime.c.exe prime.go.exe prime.rs.exe
 
 prime-test: prime
+	@echo "=== prime-test"
+	@echo -n " asm: "
+	@./prime.asm.exe
 	@echo -n "   c: "
 	@./prime.c.exe
 	@echo -n "  go: "
@@ -11,6 +14,11 @@ prime-test: prime
 	@./prime.rs.exe
 	@echo -n "  sh: "
 	@sh prime.sh
+
+prime.asm.exe: prime.asm
+	nasm -f elf64 -o prime.asm.o prime.asm
+	ld -o prime.asm.exe prime.asm.o
+	rm prime.asm.o
 
 prime.c.exe: prime.c
 	cc -lm -o prime.c.exe prime.c 
