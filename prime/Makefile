@@ -8,6 +8,8 @@ test: prime
 	@./prime.go.exe
 	@echo -n "  js: "
 	@node prime.js
+	@echo -n "  py: "
+	@python prime.py
 	@echo -n "  rs: "
 	@./prime.rs.exe
 	@echo -n "  sh: "
