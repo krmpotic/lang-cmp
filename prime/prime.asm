@@ -16,15 +16,15 @@ _start:
 	je exit
 	mov rcx, 2
   c:
-	cmp rcx, r12
-	jnl prime ; tested all rcx 2..r12, r12 is prime!
+	cmp rcx, r12 ; tested all rcx 2..r12?
+	jnl prime    ; yes, r12 is prime!
 
-	;; is r12 divisible by rcx?
+	;; r12 % rcx == 0?
 	mov rax, r12
 	xor rdx, rdx
 	div rcx
 	cmp rdx, 0
-	je back ; it is, so r12 not prime!
+	je back ; true, so r12 not prime!
 
 	inc rcx
 	jmp c
@@ -35,13 +35,11 @@ _start:
 prime:
 	mov rax, r12
 	mov rbx, ASCII_SPACE
-	jmp print_rax_bx
 
 print_rax_bx: ; print int in rax, and character in bx
 	push bx
+	mov rcx, 2 ; rcx counter, pushed chars * 2
 	mov rbx, 10
-	xor rcx, rcx
-	add rcx, 2
   _pr_0:
 	xor rdx, rdx
 	div rbx
@@ -59,7 +57,6 @@ print_rax_bx: ; print int in rax, and character in bx
 	syscall
 
 	jmp back
-
 exit:
 	mov ax, ASCII_NL
 	push ax
