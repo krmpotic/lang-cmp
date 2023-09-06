@@ -2,18 +2,20 @@ section .data
 	SYS_WRITE equ 1
 	SYS_EXIT equ 60
 	STDOUT equ 1
-	NL db 0xa
+	ASCII_NL db 0xa
 	ASCII_SPACE db 0x20
 
 section .text
 	global _start
 _start:
 	pop r15     ;argc
+	cmp r15, 1
+	je exit
 	mov rbx, rsp;**argv
   loopx:
 	dec r15
 	cmp r15, 0
-	je exit     ;no more args left
+	je nl_exit     ;no more args left
 
 	add rbx, 8
 	jmp puts
@@ -41,10 +43,16 @@ space:
 	lea rsi, [ASCII_SPACE]
 	mov rax, SYS_WRITE
 	mov rdi, 1
-	mov rdx, 1 
+	mov rdx, 1
 	syscall
 	je loopx
 
+nl_exit:
+	lea rsi, [ASCII_NL]
+	mov rax, SYS_WRITE
+	mov rdi, 1
+	mov rdx, 1
+	syscall
 exit:
 	mov rax, SYS_EXIT
 	mov rdi, 0
