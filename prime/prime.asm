@@ -5,7 +5,7 @@ section .data
 	SYS_EXIT  equ 60
 	ASCII_ZERO  equ 0x30
 	ASCII_SPACE equ 0x20
-	ASCII_NL    equ 0xa
+	ASCII_NL    db 0xa
 
 section .text
 	global _start
@@ -60,12 +60,10 @@ print_rax_bx: ; print int in rax, and character in bx
 
 	jmp back
 exit:
-	mov ax, ASCII_NL
-	push ax
 	; write(fd, buf, count)
 	mov rax, SYS_WRITE
 	mov rdi, STDOUT
-	mov rsi, rsp
+	lea rsi, [ASCII_NL]
 	mov rdx, 1
 	syscall
 
