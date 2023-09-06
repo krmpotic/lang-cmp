@@ -1,5 +1,7 @@
 test: revargs
 	@echo "=== revargs-test"
+	@echo -n " asm: "
+	@./revargs.asm.exe ena dva tri
 	@echo -n "   c: "
 	@./revargs.c.exe ena dva tri
 	@echo -n "  go: "
@@ -13,12 +15,12 @@ test: revargs
 	@echo -n "  sh: "
 	@sh revargs.sh ena dva tri
 
-revargs:  revargs.c.exe revargs.go.exe revargs.rs.exe
+revargs: revargs.asm.exe revargs.c.exe revargs.go.exe revargs.rs.exe
 
-#revargs.asm.exe: revargs.asm
-#	nasm -f elf64 -o revargs.asm.o revargs.asm
-#	ld -o revargs.asm.exe revargs.asm.o
-#	rm revargs.asm.o
+revargs.asm.exe: revargs.asm
+	nasm -f elf64 -o revargs.asm.o revargs.asm
+	ld -o revargs.asm.exe revargs.asm.o
+	rm revargs.asm.o
 
 revargs.c.exe: revargs.c
 	cc -lm -o revargs.c.exe revargs.c 
