@@ -11,13 +11,16 @@ _start:
 	pop r15     ;argc
 	cmp r15, 1
 	je exit
+	mov rax, r15
+	shl rax, 3 ; *8
 	mov rbx, rsp;**argv
+	add rbx, rax
   loopx:
 	dec r15
 	cmp r15, 0
 	je nl_exit     ;no more args left
 
-	add rbx, 8
+	add rbx, -8
 	jmp puts
 
 	jmp loopx
