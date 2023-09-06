@@ -28,7 +28,7 @@ c:
 
 	mov cl, [rsi]
 	cmp cl, 0
-	je loopx
+	je space
 
 	mov rax, SYS_WRITE
 	mov rdi, 1
@@ -38,7 +38,7 @@ c:
 	inc r12
 	jmp c
 space:
-	mov rsi, [ASCII_SPACE]
+	lea rsi, [ASCII_SPACE]
 	mov rax, SYS_WRITE
 	mov rdi, 1
 	mov rdx, 1 
