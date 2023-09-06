@@ -37,15 +37,17 @@ prime:
 	mov rbx, ASCII_SPACE
 
 print_rax_bx: ; print int in rax, and character in bx
-	push bx
-	mov rcx, 2 ; rcx counter, pushed chars * 2
+	dec rsp
+	mov [rsp], bl
+	mov rcx, 1 ; rcx counter
 	mov rbx, 10
   _pr_0:
 	xor rdx, rdx
 	div rbx
 	add dl, ASCII_ZERO
-	push dx ;; can't we push a single byte?
-	add rcx, 2
+	dec rsp
+	mov [rsp], dl
+	inc rcx
 	cmp rax, 0
 	jne _pr_0
 
