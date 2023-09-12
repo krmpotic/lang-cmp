@@ -7,7 +7,7 @@ int isprime(int n)
 {
     int r = sqrt((double)n);
 
-    for (int i = 2; i <= (int)r; i++) {
+    for (int i = 2; i <= r; i++) {
         if (n%i == 0) {
             return 0;
         }
